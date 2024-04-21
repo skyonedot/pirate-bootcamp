@@ -58,7 +58,7 @@ async function main() {
     }
 
     // await createMintToken()
-    const program = new Program(idl as anchor.Idl, new anchor.web3.PublicKey("uSpBUMV7dYCb3XSJ3VyTXt6BGRjqKpnK7E6Ep2Fiw4r"), provider)
+    const program = new Program(idl as anchor.Idl, new anchor.web3.PublicKey("4vDhf9BpYKzHqvwK1dW162fTuPzCUj9ZSz65hsM8zuFU"), provider)
 
     // //1. initialize
     // let [vaultAccount] = PublicKey.findProgramAddressSync(
@@ -77,26 +77,26 @@ async function main() {
 
 
 
-    //2. Satke 
+    // // 2. Satke 
     // let userTokenAccount = await getOrCreateAssociatedTokenAccount(
     //     connection,
     //     wallet.payer,
     //     mintKeyPair.publicKey,
     //     wallet.publicKey
     // )
-    // console.log("userTokenAccount", userTokenAccount)
+    // // console.log("userTokenAccount", userTokenAccount)
 
-    //to our self mint 100 token
+    // //to our self mint 100 token
 
-    // let tx = await mintTo(
-    //     connection,
-    //     wallet.payer,
-    //     mintKeyPair.publicKey,
-    //     userTokenAccount.address,
-    //     wallet.payer,
-    //     1e11,
-    // )
-    // console.log("Mint to transaction signature", tx)
+    // // let tx = await mintTo(
+    // //     connection,
+    // //     wallet.payer,
+    // //     mintKeyPair.publicKey,
+    // //     userTokenAccount.address,
+    // //     wallet.payer,
+    // //     1e11,
+    // // )
+    // // console.log("Mint to transaction signature", tx)
 
     // let [stakeInfo] = PublicKey.findProgramAddressSync(
     //     [Buffer.from("stake_info"), wallet.publicKey.toBuffer()],
@@ -111,7 +111,7 @@ async function main() {
     // console.log("stakeInfo", stakeInfo, "stakeAccount", stakeAccount)
 
 
-    // const tx = await program.methods
+    // let tx = await program.methods
     //     .stake(new anchor.BN(1))
     //     // .signers([payer.payer])
     //     .accounts({
@@ -131,15 +131,15 @@ async function main() {
         program.programId
     )
 
-    // let tx = await mintTo(
-    //     connection,
-    //     wallet.payer,
-    //     mintKeyPair.publicKey,
-    //     vaultAccount,
-    //     wallet.payer,
-    //     1e21
-    // )
-    // console.log("Mint to transaction signature", tx)
+    let tx = await mintTo(
+        connection,
+        wallet.payer,
+        mintKeyPair.publicKey,
+        vaultAccount,
+        wallet.payer,
+        1e21
+    )
+    console.log("Mint to transaction signature", tx)
 
     let userTokenAccount = await getOrCreateAssociatedTokenAccount(
         connection,
@@ -159,7 +159,7 @@ async function main() {
     )
 
 
-    const tx = await program.methods
+    tx = await program.methods
         .unstake()
         // .signers([payer.payer])
         .accounts({

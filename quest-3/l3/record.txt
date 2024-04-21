@@ -18,3 +18,14 @@ stakeInfo PublicKey [PublicKey(QkLjSGx2oEaBZWje6KprQHeDnSgdGZ3bo7nLG3u7vin)] {
 } stakeAccount PublicKey [PublicKey(JE3HiPSoD7FNLPHR7wJWTr5xTDSMoZ6zdHr94Tn4cnap)] { token抵押到这里面
   _bn: <BN: ffedd0c4c31d4571227994c0750cc86cbf549c38022b96faa7dcac69999ed2c5>
 }
+
+
+8. 涉及到的各个Account 可以查看accountFigure.jpg
+
+
+
+
+npx tsx main.ts
+
+遇到program ID不匹配的话， anchor build不管用， 用anchor test
+solana program deploy ./target/deploy/.so --program-id:

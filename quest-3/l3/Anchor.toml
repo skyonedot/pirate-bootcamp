@@ -2,13 +2,14 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-l3 = "uSpBUMV7dYCb3XSJ3VyTXt6BGRjqKpnK7E6Ep2Fiw4r"
+l3 = "4vDhf9BpYKzHqvwK1dW162fTuPzCUj9ZSz65hsM8zuFU"
 # test
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+# cluster = "Localnet"
+cluster = "Devnet"
 wallet = "/root/.config/solana/id.json"
 
 [scripts]

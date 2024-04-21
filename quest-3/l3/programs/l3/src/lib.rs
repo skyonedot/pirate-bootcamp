@@ -6,7 +6,7 @@ use anchor_spl::{
 };
 
 use solana_program::clock::Clock;
-declare_id!("uSpBUMV7dYCb3XSJ3VyTXt6BGRjqKpnK7E6Ep2Fiw4r");
+declare_id!("4vDhf9BpYKzHqvwK1dW162fTuPzCUj9ZSz65hsM8zuFU");
 
 
 pub mod constants{
@@ -86,6 +86,8 @@ pub mod l3 {
             ),
             reward
         )?;
+        msg!("Reward: {}", reward);
+        msg!("From is {} to is {}", ctx.accounts.token_vault_account.to_account_info().key, ctx.accounts.user_token_account.to_account_info().key);
 
         let staker = ctx.accounts.signer.key();
         let bump = *ctx.bumps.get("stake_account").unwrap();
@@ -96,13 +98,17 @@ pub mod l3 {
                 ctx.accounts.token_program.to_account_info(),
                 Transfer {
                     from: ctx.accounts.stake_account.to_account_info(),
-                    to: ctx.accounts.token_vault_account.to_account_info(),
+                    // to: ctx.accounts.token_vault_account.to_account_info(),
+                    to: ctx.accounts.user_token_account.to_account_info(),
                     authority: ctx.accounts.stake_account.to_account_info(),
                 },
                 signer
             ),
             stake_amount,
         )?;    
+        msg!("stake_amount: {}", stake_amount);
+        msg!("From is {} to is {}", ctx.accounts.stake_account.to_account_info().key, ctx.accounts.token_vault_account.to_account_info().key);
+
 
         stake_info.is_staked = false;
         stake_info.stake_at_slot = clock.slot;
